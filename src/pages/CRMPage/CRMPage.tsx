@@ -150,9 +150,11 @@ const CRMPage: React.FC = () => {
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <span style={{ fontSize: '12px', padding: '4px 12px', borderRadius: '20px', fontWeight: 600, background: '#dcfce7', color: '#15803d' }}>● 服务运行中</span>
-            <span style={{ fontSize: '20px', cursor: 'pointer' }}>
-            🔔
-              </span>
+            {/* BUG-1: 通知红点永远显示 */}
+            <span style={{ fontSize: '20px', position: 'relative', cursor: 'pointer' }}>
+              🔔
+              <span style={{ position: 'absolute', top: '-2px', right: '-2px', width: '8px', height: '8px', background: '#ef4444', borderRadius: '50%', border: '1.5px solid #fff', display: 'block' }} />
+            </span>
           </div>
         </header>
 
