@@ -166,18 +166,19 @@ const CRMPage: React.FC = () => {
               {[
                 { icon: '👥', bg: '#dbeafe', value: String(customers.length), label: '客户总数', bug: false },
                 { icon: '📦', bg: '#dcfce7', value: String(cart.length), label: '订单商品数', bug: false },
-                { icon: '💰', bg: '#fef3c7', value: `$${cartTotal.toFixed(2)}`, label: '订单总额', bug: false },
+                // BUG-2: 红底红字，金额看不见
+                { icon: '💰', bg: '#fee2e2', value: `$${cartTotal.toFixed(2)}`, label: '订单总额', bug: true },
                 { icon: '📝', bg: '#ede9fe', value: String(logCount), label: '操作记录', bug: false },
               ].map((card, i) => (
                 <div key={i} style={{
-                  background: '#fff', borderRadius: '10px', padding: '20px',
+                  background: card.bug ? '#ef4444' : '#fff', borderRadius: '10px', padding: '20px',
                   display: 'flex', alignItems: 'center', gap: '16px',
                   boxShadow: '0 1px 3px rgba(0,0,0,0.08)',
                 }}>
-                  <div style={{ width: '48px', height: '48px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '22px', background: card.bg, flexShrink: 0 }}>{card.icon}</div>
+                  <div style={{ width: '48px', height: '48px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '22px', background: card.bug ? '#fee2e2' : card.bg, flexShrink: 0 }}>{card.icon}</div>
                   <div>
-                    <div style={{ fontSize: '28px', fontWeight: 700, color: '#1e293b', lineHeight: 1.2 }}>{card.value}</div>
-                    <div style={{ fontSize: '13px', color: '#64748b', marginTop: '2px' }}>{card.label}</div>
+                    <div style={{ fontSize: '28px', fontWeight: 700, color: card.bug ? '#ef4444' : '#1e293b', lineHeight: 1.2 }}>{card.value}</div>
+                    <div style={{ fontSize: '13px', color: card.bug ? '#fca5a5' : '#64748b', marginTop: '2px' }}>{card.label}</div>
                   </div>
                 </div>
               ))}
